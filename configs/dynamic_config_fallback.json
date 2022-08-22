@@ -32,5 +32,18 @@
         }
       }
     }
+  },
+  "STATIC_SERVER_CONTENT_TYPE_MAP": {
+	  "__default__": "text/plain",
+	  ".png": "image/png",
+	  ".gif": "image/gif",
+	  ".jpeg": "image/jpeg",
+	  ".html": "text/html",
+	  ".htm": "text/html",
+	  ".json": "application/json",
+	  ".js": "application/javascript",
+	  ".md": "text/markdown",
+	  ".css": "text/css",
+	  ".svg": "image/svg+xml"
   }
 }

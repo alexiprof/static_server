@@ -29,8 +29,8 @@ build-impl-%: build_%/Makefile
 
 # test
 test-impl-%: build-impl-%
-	@cmake --build build_$* -j $(NPROCS) --target static_server_unittest
-	@cmake --build build_$* -j $(NPROCS) --target static_server_benchmark
+	#@cmake --build build_$* -j $(NPROCS) --target static_server_unittest
+	#@cmake --build build_$* -j $(NPROCS) --target static_server_benchmark
 	@cd build_$* && ((test -t 1 && GTEST_COLOR=1 PYTEST_ADDOPTS="--color=yes" ctest -V) || ctest -V)
 	@pep8 tests
 

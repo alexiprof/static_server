@@ -9,31 +9,35 @@ add_subdirectory(third_party/userver)
 
 # Common sources
 add_library(${PROJECT_NAME}_objs OBJECT
-    src/hello.hpp
-    src/hello.cpp
+	src/types/fileinfo.hpp
+    src/handlers/static_server.hpp
+    src/handlers/static_server.cpp
+	src/components/static_storage.hpp
+	src/components/static_storage.cpp
 )
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver-core)
 
+FILE(GLOB_RECURSE HPP_LIST src/**/*.hpp)
 
 # The Service
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp ${HPP_LIST})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}_objs)
 
 
-# Unit Tests
-add_executable(${PROJECT_NAME}_unittest
-    src/hello_test.cpp
-)
-target_link_libraries(${PROJECT_NAME}_unittest PRIVATE ${PROJECT_NAME}_objs userver-utest)
-add_google_tests(${PROJECT_NAME}_unittest)
+## Unit Tests
+#add_executable(${PROJECT_NAME}_unittest
+#    src/hello_test.cpp
+#)
+#target_link_libraries(${PROJECT_NAME}_unittest PRIVATE ${PROJECT_NAME}_objs userver-utest)
+#add_google_tests(${PROJECT_NAME}_unittest)
 
 
-# Benchmarks
-add_executable(${PROJECT_NAME}_benchmark
-	src/hello_benchmark.cpp
-)
-target_link_libraries(${PROJECT_NAME}_benchmark PRIVATE ${PROJECT_NAME}_objs userver-ubench)
-add_google_benchmark_tests(${PROJECT_NAME}_benchmark)
+## Benchmarks
+#add_executable(${PROJECT_NAME}_benchmark
+#	src/hello_benchmark.cpp
+#)
+#target_link_libraries(${PROJECT_NAME}_benchmark PRIVATE ${PROJECT_NAME}_objs userver-ubench)
+#add_google_benchmark_tests(${PROJECT_NAME}_benchmark)
 
 # Functional Tests
 add_subdirectory(tests)

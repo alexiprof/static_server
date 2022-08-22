@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
                             .Append<userver::components::HttpClient>()
                             .Append<userver::server::handlers::TestsControl>();
 
-  service_template::AppendHello(component_list);
+  static_server::AppendHello(component_list);
 
   return userver::utils::DaemonMain(argc, argv, component_list);
 }
